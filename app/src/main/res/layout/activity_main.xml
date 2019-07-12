@@ -2,62 +2,59 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/btn"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f2f2f2"
     tools:context="com.duratechsol.fidaahmed.sastabazar.MainActivity"
     >
 
-    <Button
-        android:id="@+id/btnCart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Cart"
-        app:layout_constraintBottom_toTopOf="@+id/vfSlider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/etSearch"
-        app:layout_constraintTop_toTopOf="parent"
-
-        />
-
-    <EditText
-        android:id="@+id/etSearch"
-        android:layout_width="283dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Search"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ViewFlipper
-        android:id="@+id/vfSlider"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etSearch">
-    </ViewFlipper>
+        app:layout_constraintTop_toTopOf="parent">
 
-    <android.support.v7.widget.RecyclerView
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vfSlider"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:id="@+id/recyclerView"
-        android:orientation="horizontal" >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:weightSum="3">
 
-    </android.support.v7.widget.RecyclerView>
+            <ViewFlipper
+                android:id="@+id/vfSlider"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1">
 
+            </ViewFlipper>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <ExpandableListView
+                android:id="@+id/exp_list"
+                android:layout_width="wrap_content"
+                android:layout_height="800dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:divider="#A4C739"
+                android:dividerHeight="0.5dp"
+                android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft">
+
+            </ExpandableListView>
+
+        </LinearLayout>
+    </ScrollView>
 
 </android.support.constraint.ConstraintLayout>

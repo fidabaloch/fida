@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ViewFlipper;
@@ -17,6 +18,12 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> mNames = new ArrayList<>();
     private ArrayList<String> mImageUrls = new ArrayList<>();
     ViewFlipper vfSlider;
+    // variables for expandable list view
+    private ExpandableAdapter expandableAdapter;
+    private ExpandableListView expList;
+    private String[] parents = new String[]{"Action Movies", "Romantic Movies","Comedy Movies",};
+    private ArrayList<String> Action_Movies, Romantic_Movies, Comedy_Movies;
+    public static ArrayList<ArrayList<String>> childList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +34,15 @@ public class MainActivity extends AppCompatActivity {
         for (int img:image){
             Slider(img);
         }
+
+        // code for expandable list view
+        expList = (ExpandableListView) findViewById(R.id.exp_list);
+
+        setChildMovies();
+
+        expandableAdapter = new ExpandableAdapter(this, childList, parents);
+        expList.setAdapter(expandableAdapter);
+
     }
     public void Slider (int image){
         ImageView iv = new ImageView( this);
@@ -77,5 +93,34 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(this,mNames,mImageUrls);
         recyclerView.setAdapter(adapter);
+    }
+
+    // code for expandable list view
+
+    private void setChildMovies(){
+
+        Action_Movies = new ArrayList<>();
+        Romantic_Movies = new ArrayList<>();
+        Comedy_Movies = new ArrayList<>();
+
+        Action_Movies.add("Dark Knight");
+        Action_Movies.add("Transporter");
+        Action_Movies.add("Iron Man");
+
+        Romantic_Movies.add("Twilight");
+        Romantic_Movies.add("Titanic");
+        Romantic_Movies.add("The House Bunny");
+
+        Comedy_Movies.add("We are the millers");
+        Comedy_Movies.add("Hang over");
+        Comedy_Movies.add("Last Night");
+
+        childList = new ArrayList<>();
+
+        childList.add(Action_Movies);
+        childList.add(Romantic_Movies);
+        childList.add(Comedy_Movies);
+
+
     }
 }
